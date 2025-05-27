@@ -8,10 +8,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import pickle
-from dotenv import load_dotenv
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets("OPENAI_API_KEY")
 
 # Load response templates from JSON
 @st.cache_data
@@ -161,20 +159,11 @@ Respond below:
 # Authenticate and create Gmail service
 @st.cache_resource
 def get_gmail_service():
-    SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
-    creds = None
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(creds, token)
-    return build('gmail', 'v1', credentials=creds)
+    token_str = st.secrets["token_pickle"]
+    creds = pickle.loads(base64.b64decode(token_str.encode("utf-8")))
+    service = build("gmail", "v1", credentials=creds)
+    return service
+
 
 # Create Gmail draft
 def create_gmail_draft(service, to, subject, body):
