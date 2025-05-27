@@ -1,0 +1,242 @@
+import streamlit as st
+import json
+import os
+import openai
+from email.mime.text import MIMEText
+import base64
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+import pickle
+from dotenv import load_dotenv
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Load response templates from JSON
+@st.cache_data
+def load_templates():
+    with open("templates/email_templates.json", "r") as f:
+        return json.load(f)
+
+import re
+def normalize(text):
+    text = text.lower()
+    text = text.replace("’", "'").replace("‘", "'")
+    text = text.split("—")[0]  # Cut signature
+
+    # Remove soft filler phrases
+    text = re.sub(
+        r"\b(i would like to|i want to|i need to|please|my|the|can you|how do i|how can i|just|i|this is|thank you|thanks)\b",
+        "",
+        text
+    )
+
+    text = re.sub(r"[^\w\s]", "", text)  # remove punctuation
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+from rapidfuzz import fuzz
+
+FUZZY_THRESHOLD = 85  # change as needed for accuracy
+
+def detect_intent(user_input, templates):
+    normalized_input = normalize(user_input)
+
+    for category, category_data in templates.items():
+        # First try category-level trigger phrases
+        if any(phrase in normalized_input for phrase in category_data.get("trigger_phrases", [])):
+            for intent_key, intent_data in category_data.get("intents", {}).items():
+                # First try exact match
+                if any(phrase in normalized_input for phrase in intent_data.get("trigger_phrases", [])):
+                    return {
+                        "category": category,
+                        "intent": intent_key,
+                        "subject": intent_data["subject"],
+                        "reply": intent_data["reply"],
+                        "image": intent_data.get("image", None)
+                    }
+                # Then try fuzzy matching
+                for phrase in intent_data.get("trigger_phrases", []):
+                    score = fuzz.partial_ratio(normalized_input, normalize(phrase))
+                    if score >= FUZZY_THRESHOLD:
+                        return {
+                            "category": category,
+                            "intent": intent_key,
+                            "subject": intent_data["subject"],
+                            "reply": intent_data["reply"],
+                            "image": intent_data.get("image", None)
+                        }
+
+            # If no intent matched but category was triggered
+            return {
+                "category": category,
+                "intent": None,
+                "subject": f"{category} Inquiry",
+                "reply": "Thanks for reaching out to Rising Tide Car Wash! We’d love to assist you further. Could you clarify your question?",
+                "image": None
+            }
+
+    return None  # No match at all
+
+def preprocess_email(body):
+    body = body.lower()
+    body = body.replace("’", "'").replace("‘", "'")
+    body = body.split("—")[0]  # Remove everything after an em dash (signature)
+    return body.strip()
+
+
+def create_draft_with_image(to, subject, html_body, image_path):
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    from email.mime.image import MIMEImage
+    import base64
+
+    message = MIMEMultipart('related')
+    message['To'] = to
+    message['Subject'] = subject
+
+    alt = MIMEMultipart('alternative')
+    message.attach(alt)
+
+    # Attach HTML content
+    alt.attach(MIMEText(html_body, 'html'))
+
+    # Attach image
+    with open(image_path, 'rb') as img_file:
+        img = MIMEImage(img_file.read())
+        image_filename = os.path.basename(image_path)
+        content_id = os.path.splitext(image_filename)[0]
+        img.add_header('Content-ID', '<renewimage>')
+        img.add_header('Content-Disposition', 'inline', filename=image_filename)
+        message.attach(img)
+
+    # Return base64-encoded email content
+    raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+    return {'raw': raw}
+
+
+# Build GPT-based email reply
+from openai import OpenAI
+
+client = OpenAI()  # uses OPENAI_API_KEY from env
+
+def generate_gpt_reply(user_email, intent, template):
+    prompt = f"""
+You are a customer support assistant for Rising Tide Car Wash.
+
+A customer has sent an email, and your job is to respond professionally.
+
+Rules:
+- Start with a short, polite intro acknowledging the issue.
+- Then insert the template reply **exactly as written**.
+- Do NOT include the subject line.
+- Do NOT change formatting or emoji.
+- Do NOT add a closing signature.
+
+Customer Email:
+{user_email}
+
+Template Reply:
+{template['reply']}
+
+Respond below:
+"""
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a helpful customer service assistant. Use the reply template exactly as provided after your greeting. No subject, no signature."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    )
+    return response.choices[0].message.content
+
+# Authenticate and create Gmail service
+@st.cache_resource
+def get_gmail_service():
+    SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
+    creds = None
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+    return build('gmail', 'v1', credentials=creds)
+
+# Create Gmail draft
+def create_gmail_draft(service, to, subject, body):
+    message = MIMEText(body, "html")
+    message['to'] = to
+    message['subject'] = subject
+    encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+    create_message = {'message': {'raw': encoded_message}}
+    draft = service.users().drafts().create(userId='me', body=create_message).execute()
+    return draft
+
+# Get unread emails
+def fetch_unread_emails(service, max_results=50):
+    results = service.users().messages().list(userId='me', labelIds=['INBOX', 'UNREAD'], maxResults=max_results).execute()
+    messages = results.get('messages', [])
+    email_contents = []
+    for msg in messages:
+        msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
+        headers = msg_data.get('payload', {}).get('headers', [])
+        sender = next((h['value'] for h in headers if h['name'] == 'From'), 'Unknown')
+        subject = next((h['value'] for h in headers if h['name'] == 'Subject'), 'No Subject')
+        snippet = msg_data.get('snippet', '')
+        email_contents.append({
+            'id': msg['id'],
+            'from': sender,
+            'subject': subject,
+            'body': snippet
+        })
+    return email_contents
+
+# Streamlit UI
+st.title("📧 Email Reply Assistant")
+
+service = get_gmail_service()
+templates = load_templates()
+
+if st.button("🔁 Refresh Inbox"):
+    st.session_state["unread_emails"] = fetch_unread_emails(service)
+
+if "unread_emails" in st.session_state:
+    if not st.session_state["unread_emails"]:
+        st.info("No unread emails found.")
+    else:
+        for email in st.session_state["unread_emails"]:
+            st.markdown("---")
+            st.subheader(f"✉️ From: {email['from']}")
+            st.write(f"**Subject:** {email['subject']}")
+            st.write(f"**Body:** {email['body']}")
+
+            cleaned_body = preprocess_email(email['body'])
+            intent = detect_intent(cleaned_body, templates)
+
+            if intent:
+                template = intent
+                if f"reply_{email['id']}" not in st.session_state:
+                    st.session_state[f"reply_{email['id']}"] = generate_gpt_reply(email['body'], intent, template)
+
+                reply_text = st.session_state[f"reply_{email['id']}"]
+                st.text_area("Reply Text", reply_text, height=200, key=email['id'])
+
+                if st.button(f"📤 Create Draft for {email['subject']}", key=email['id'] + '_send'):
+                    draft = create_gmail_draft(service, email['from'], template['subject'], reply_text)
+                    st.success(f"Draft created for {email['from']} – Draft ID: {draft['id']}")
+            else:
+                st.warning("No matching template found for this email.")

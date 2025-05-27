@@ -1,0 +1,240 @@
+{
+  "activation_code_issue": {
+    "trigger_phrases": [
+      "submitted an activation form",
+      "activation code not working",
+      "when can I use my gift card",
+      "activation code",
+      "purchased 3 month membership",
+      "3 month membership"
+    ],
+    "subject": "Membership Activation Assistance",
+    "reply": "Thanks for reaching out! We couldn’t find a match for your activation code. Please reply with your registration code and purchaser name.<br><br>📎 Attached: Example_Gift_Recipient_Email.png",
+    "image": "Example_Gift_Recipient_Email.png"
+  },
+  "license_plate_number_needed": {
+    "trigger_phrases": [
+      "membership not working",
+      "license plate not reading",
+      "license plate not working",
+      "does not read my plate",
+      "cannot read license plate",
+      "car not recognized",
+      "can't see my plate"
+    ],
+    "subject": "Need License Plate Number",
+    "reply": "Thanks for signing up! Please reply with your license plate number so we can finalize your vehicle registration. ✨"
+  },
+  "membership_info": {
+    "trigger_phrases": [
+      "how much is a membership",
+      "what are the membership prices",
+      "pricing for unlimited wash",
+      "membership options",
+      "membership prices",
+      "different memberships",
+        "membership plans"
+    ],
+    "subject": "Membership Pricing & Benefits",
+    "reply": "Thanks for reaching out! We currently offer 3 levels of exterior memberships:<br><br><ul><li><b>Tide Guard Club for $42.95 + tax per vehicle each month</b><ul><li>Our top-tier wash featuring Graphene + Ceramic Supershine to help protect your vehicle from chips & scratches with added UV protection</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Tire shine & wheel cleaner</li></ul></li><li><b>Tide Gloss Club for $34.95 + tax per vehicle each month</b><ul><li>Still includes our Ceramic Supershine application, <span style=\\\"color: red;\\\">no Graphene</span></li><li>Shine Bath & Shine Boost</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Tire shine & wheel cleaner</li></ul></li><li><b>Tide Glaze for $29.90 + tax per vehicle each month</b><ul><li><span style=\"color: red;\">No Ceramic or Graphene application</span></li><li>Carnuba Wax for standard protection</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Tire shine & wheel cleaner</li></ul></li></ul><br>You can view full benefits and sign up here: <a href=\"https://www.risingtidecarwash.com/unlimited-club\">Membership Plans</a><br><br>When you first arrive at a location, the attendants near the pay station can help you select the best option.<br><br>Currently, we're running a new member promotion where customers who enroll their vehicle for a membership can claim the <b>'1st month for the price of only 1 wash'</b> promo. Plans still renew after the first month for the full standard price on a monthly basis.<br><br>To enroll, please visit any Rising Tide Car Wash location with your vehicle.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨" 
+  },
+  "Manage_Membership": {
+    "trigger_phrases": [
+      "how can I cancel my membership",
+      "cancel plan",
+      "change credit card",
+      "change billing",
+      "want to cancel",
+        "cancel membership"
+    ],
+    "subject": "Manage Membership Form",
+    "reply": "Happy to help!<br><br>Our Unlimited Wash Club is valid across all Rising Tide Car Wash locations. Addresses can be found on my signature line below. 💡 Feel free to click the link above to learn more about this plan online.<br><br><b>To change the card on file OR if you need to cancel our membership</b>, please submit a Manage Membership Form through our website & submit one form per car. This is an automated system & in most cases you can leave the 'Barcode from windshield if applicable' field blank.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+  },
+    "Cancel_Membership": {
+        "trigger_phrases": [
+            "plan cancelled",
+            "refund",
+            "refund membership",
+            "refund previous month"
+    ],
+    "subject": "Cancelation & Refund Issued",
+    "reply": "Thank you for reaching out to our team. <br><br>We're so sorry to see you go but would be happy to help. Please allow this email to serve as confirmation that your membership, under license plate: ?????, has been <b>cancelled</b>effective immediately and will <b>remain valid until ????</b><br><br><b>A refund has been isssued</b>for the automatic renewal fee that our system had queued prior to this request being processed. Please allow a few business days for this refund to be reflected on your account as this varies by banking institution.<br><br>We thank you for your support and want to wish you all the best,<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+    },
+  "Retired_Club": {
+    "trigger_phrases": [
+      "annual membership",
+      "annual club",
+      "old membership",
+      "retired club"
+    ],
+    "subject": "Unable to Enroll in Retired Club",
+    "reply": "We appreciate your interest! Currently, we are only accepting enrollees for the current clubs. For more information, check out our website where it explains the different options for our <a href=\"https://www.risingtidecarwash.com/unlimited-club\">Ripple Club</a>.<br><br>Rising Tide has continued to make improvements, elevating our top-tier washes & service offerings throughout the years. The current Unlimited Club allows members to receive an unlimited number of our current top three exterior washes. We also offer memberships with inside cleaning included — for more information on those, please visit our Margate or Parkland locations. Addresses can be found under my signature.<br><br>Retired clubs are no longer open to new enrollees. These members may cancel their retired membership & enroll in the current club at the current rate any time they wish to upgrade.<br><br>Thank you for your understanding and support.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+  },
+  "Mission_interest": {
+    "trigger_phrases": [
+      "interested in mission",
+      "autism",
+        "social enterprise",
+        "autism friendly",
+        "your cause",
+        "your mission",
+        "special needs employment",
+        "neurodiverse"
+    ],
+    "subject": "FAQ: Interested in Mission",
+    "reply": "Thank you for taking an interest in our social enterprise. Currently, we have three locations based in South Florida, covering Parkland, Margate, and Coral Springs.<br><br>Feel free to visit our private Facebook group <a href=\"https://m.facebook.com/groups/autism.entrepreneurship/?ref=group_header&view=group\">Autism Entrepreneurship</a>, geared towards those who may wish to start their own autism enterprise. We also have a web-based program available to help people get started that draws from our experience: <a href=\"http://risingtideu.com/free-resources\">Rising Tide U</a>. Some resources are free and others have a fee — feel free to check it out.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+  },
+    "Change_card": {
+        "trigger_phrases": [
+            "need to update credit card",
+            "card not working",
+            "new card",
+            "update billing",
+            "update card on file"
+    ],
+    "subject": "How to change CC - SUSPENDED membership",
+    "reply": "Thank you for reaching out to our team. We'd be happy to help!<br><br>Currently, due to merchant privacy regulations at this time there are only two ways to update the card on file: <br><br><b>Option 1:</b> The fastest way to reactivate a membership is by renewing on site, where the card is swiped in our point of sales system.<br><b>Option 2:</b> Update the card via our website. Once this is done, please send us a follow-up email stating this action is complete so we can set the account to 'Bill' status. Keep in mind that our email is a communal inbox; therefore, expect responses in about 48–72 hours.<br><br>We have set the membership for your account, under <span style=\\\"background-color:yellow;\\\">license plate: ####</span>, to 'suspend' so that our system will not attempt to automatically bill the card on file.<br><br>If doing option 1:<br>After <span style=\\\"background-color: yellow;\\\">??? EXPIRATION DATE ???</span> when you visit your preferred location, this is the screen you will likely see:<br><b>Select 'Renew my membership' & swipe your new card when prompted</b><br><img src=\"cid:renewimage\" alt=\"Renew Screen\" style=\"max-width: 100%; height: auto;\"><br><br>If you need any assistance during this visit, please feel free to ask for a Supervisor or Manager so that they can assist.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨",
+    "image": "Renew_membership_screen.png"
+  },
+    "Member_interior": {
+        "trigger_phrases": [
+            "do members get interior services",
+            "member interior",
+            "member discount",
+            "discount on interior",
+            "member interior cleaning"
+],
+    "subject":"FAQ: Interior Upgrade Includes",
+    "reply":"Thank you for reaching out regarding our <a href=\"https://www.risingtidecarwash.com/unlimited-club\">Ripple Club</a>, feel free to visit our website for additional information.<br><br>Exterior Members have the option to purchase an Express Interior Cleaning upgrade at our Parkland or Margate stores for $13 + tax. This includes our team:<ul><li>Drying down your car</li><li>Using an air tool to blow the crevices clean</li><li>Vacuum</li><li>Any removable mats are cleaned</li><li>Wipe down of hard surfaces</li><li>Interior and exterior windows cleaned</li><li>Tire shine re-applied and rims touched up by hand</li><li>Exterior bug check, touched up by hand</li><li>Air freshener, by request</li></ul><br><br><span style=\\\"color blue;\\\">Alternatively, our self service vacuums are free across all 3 locations. Please note, Coral Springs is an exterior-only site</span>👍<br><br>Hope this helps!<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+    },
+    "Incorrect_expiration": {
+        "trigger_phrases": [
+            "not billing",
+            "expired membership",
+            "account expired",
+            "expired"
+],
+    "subject": "Incorrect Expiration Date",
+    "reply":"Thank you for being a valued supporter! I would be happy to assist. The initial email confirmation you received was an automated response triggered through our vendor after receiving your cancellation request. It appears that their system did not reflect the correct date.<br><br>Your membership on our end was paid through & remains valid through <span style=\\\"background-color yellow;\\\">XXXXX</span><br><br>My sincere apologies for this confusion. I have forwarded this to our vendor so that they can resolve the issue. We appreciate the notification & your understading!<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+    "Cost_saving_options": {
+        "trigger_phrases": [
+            "don't want a membership",
+            "other options for washes",
+            "wash packages",
+            "gift card",
+            "deals"
+],
+    "subject": "Alternative Cost Saving Options",
+    "reply": "Thank you for your interest in our services! While our Unlimited Club may not be the right fit for you, I'm happy to pass along some alternative cost saving options in the jopes that you'll consider visiting us in the future:<ul><li>Our 'BOGO 50% off' gift card retail promotion usually runs at the beginning of June until Father's Day. For the holidays, there are options that alternate; therefore, stay tuned for more information.</li></ul><br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+    "No_cancellationForm_RefundRequest": {
+        "trigger_phrases": [
+        "tried to cancel",
+        "cancellation form",
+        "cancel and refund"
+],
+    "subject": "No Cancellation Request Found - Refund Request",
+    "reply": "Thank you for reaching out to our team. We're sorry to hear about any inconvenience that this may have caused. <b>Please note that our process requires that all cancellation requests be submitted in writing either through this designated email address or via the Manage Membership form on our website</b> as indicated on the screen during the initial enrollment & posted on our website.<br><br>I've reviewed this inbox & our Manage Membership dashboard but have no record of a written cancellation request prior to this email thread. However, I completely understand your frustration & will be sure to use this as a valuable training opportunity for our team on the importance of clearly redirecting customers back to our website for all cancellations.<br><br><span style=\\\"background-color yellow;\\\">I have issued a refund for your XXX payment as a courtesy exception & this profile has been terminated effective immediately. Depending on your banking institution these changes may take a few days to be reflected back on the account.</span><br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+    "Member_inlcusion": {
+        "trigger_phrases": [
+            "included in membership",
+            "club add ons",
+            "what is included"
+],
+    "subject": "MEMBER $13 Interior - What's included",
+    "reply": "Good afternoon,<br><br>Happy to help! Our <b> XX Unlimited Club memberships are $XX + tax per month</b>for each vehicle, <b>$XX after taxes</b>. Memberships renew on a monthly basis automatically to the card on file until a cancellation form is submitted. To sign up for our membership, please visit a Rising Tide location in your desired car so that the license plate number can be registered.<br><br>The cost for the <b>Express Interior cleaning is $13.90 for active members</b>, <span style=\\\"background-color yellow;\\\">see attached for 'What's included'</span>👍 Members will see the following upgrade screen when they visit our Parkland or Margate location in their registered vehicle & can make multiple selections or select <b>No Upgrade</b> for redeeming the exterior wash.<img src=\"cid:upgradescreen\" alt=\"Renew Screen\" style=\"max-width: 100%; height: auto;\"><br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨",
+    "image":"upgradescreen.png"
+},
+    "LPR_issues": {
+        "trigger_phrases": [
+            "license plate not reading",
+            "license plate not working",
+            "issues with membership",
+            "membership not reading",
+            "not able to use wash"
+],
+    "subject": "License Plate Reader Issues",
+    "reply": "<span style=\\\"background-color yellow;\\\">I'm so very sorry to hear about the difficulty that you have been experiencing. I'll do my best to assist. Rest assured that we value our supporters & strive to provide a great customer experience which I can see we have fallen short of. We appreciate you taking the time to provide us with feedback so that we can continue to improve.</span><br><br>To provide some context, our vendor's License Plate Reader system is intended to automatically scan the license plate number at entry as it approaches the pay station. It then will search through our database to find a registered match & if that vehicle is affiliated with an active membership profile, it then provides the vehicle with their club's wash, if your're at our Parkland or Margate locations it will also have the option of adding on any of our interior membership upgrades from the menu at this time.<br><br>License plate recognition usually works best with standard issue state plates since non-standard characters, spacing, or alternative graphic backgrounds/borders may at times interfere with the accuracy of these reads. Typically, attendants are able to quickly assist customers with custom plates by being near the pay station & swiping our Management Card to look up the plate manually when needed.<br><span style=\\\"background-color yellow;\\\"<ul><li>I will be sharing your feedback with each site's management team so that we can use this as a valuable coaching opportunity regarding clear communication & having attendants nearby.</li><li>I would also like to take a look into your account to confirm that everything is registered correctly on our end. When you have a moment, <b>please reply back with the:</b><ul><li>Phone number affiliated with this membership</li><li>License plate number that should be on file</li></ul></ul><br><br>That will allow me to look into this further & submit a support ticket to our vendor so that we can try to exhaust all troubleshooting options. For all other questions or concerns please do not hesitate to reach out to me via this designated inbox</span><br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+    "LP_update": {
+        "trigger_phrases": [
+            "need to update license plate",
+            "update license plate"
+],
+    "subject": "License Plate # Updated",
+    "reply": "Thank you for reaching out to our team & requesting an account update. I would be happy to help!<br><br> Your license plate number has been updated as requested:<br><br><span style=\\\"background-color yellow;\\\">SS of LP</span><br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+    "Plate_termination": {
+        "trigger_phrases": [
+            "don't have license plate"
+],
+    "subject": "License Plate needed to Terminate",
+    "reply": "Thank you for reaching out to our team!<br><br>So sorry to see you go but I would be happy to assist you. Our memberships currently operate via License Plate Recognition. <b>To cancel your membership, please submit a Manage Membership Cancellation form on our website, located in the signature of this email. This is the fastest way to make sure that your account is cancelled as it will prompt you to input the affiliated phone number & license plate.<br><br><ul><li><i>You would then receive a confirmation response day-of & not lose any time that was previously purchased, i.e. if you paid on March 15th your membership would still be active through April 15th regardless of cancellation date.</i></li></ul><br><br>Alternatively, this inbox is monitored various times a week Monday-Friday. If you prefer to reply back to this email thread with your license plate number/phone number I would be happy to look up your account for you, as I was unable to locate a membership with the information that was provided during an initial search.<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+    "firstMonth_cancellation": {
+        "trigger_phrases": [
+            "price change",
+            "one month",
+            "one month unlimited"
+],
+    "subject": "1st Month PROMO Cancellation",
+    "reply": "Thank you for reaching out to our team. We're so sorry to hear about any confusion this may have caused. I'll do my best to provide some clarity within this thread & provide you with a resolution. It looks like you enrolled in our unlimited <span style=\\\"background-color: yellow;\\\">$XX</span>monthly club on <span style=\\\"background-color: yellow;\\\">??????</span> at our <span style=\\\"background-color: yellow;\\\">XXX</span> location for the vehicle with license plate # <span style=\\\"background-color: yellow;\\\">XXXXX</span> during our promotional period, which is 1st month of the membership is the same price as 1 wash.<br><br>Thank you for taking the time to provide us with feedback, I'll be sharing these insights with the local team so that they can review & continue to improve. Rest assured that we strive for transparency & will be sure to follow up with our team so that we can do better in the future. I believe that part of the confusion may have been that the <b>promotional pricing applies to the 1st month only</b> after that period is over, customers who opt to keep their membership active will be charged the regular renewal rate of <span style=\\\"background-color: yellow;\\\">$$$$</span> a month.<ul><li><i>A full description of this club offering & option to decline appears on the self-service touch screen. The pay station screens display the current promotional pricing, terms & conditions which can be accessed through our website, & if selected will prompt the driver for a phone number. This is a paperless enrollment process - the phone number allows the automated system to send a welcome text for further transparency about how this club & cancellation process works.</i></li></ul><br><br>My sincere apologies for any confusion! Rest assured that memberships can be cancelled at any time. Please allow this email to serve as confirmation that your membership can be <b>cancelled</b> as requested, you will not be charged again, & this vehicle will be able to redeem unlimited washes at any Rising Tide until the close of business on <span style=\\\"background-color: yellow;\\\">??????????:</span><br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨ "
+},
+    "unable_toFind_membership": {
+        "trigger_phrases": [
+            "tried to cancel",
+            "submitted cancellation form"
+],
+    "subject":"Unable to Locate: Car Wash Membership Cancellation",
+    "reply": "Thank you for reaching out to our team.<br><br><span style=\\\"color blue;\\\">We received a request to cancel an account that does not appear to be in our system:</span><br><br><span style=\\\"background-color:yellow;\\\">COPY/PASTE RINSED INCOMPLETE TICKET for account not found in WashConnect</span><br><br><i>In case you did not intend to reach out to Rising Tide Car Wash no further action is necessary.</i><br><br>If you do have an account that needs to be cancelled, please reply back to this email thread with any other criteria that the membership(s) could have been registered under (different card holder name, different last 4 digits of card + date of last renewal, or most importantly a <b>different license plate number</b> that this membership may be found under)<br><br>We will do our best to assist you!<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+  "Activation_3month": {
+    "trigger_phrases": [
+      "three month membership activation",
+      "3 month membership activate",
+      "3 month membership activation",
+      "three month membership activate"
+    ],
+    "subject": "Activation Confirmation: 3 Month Membership",
+    "reply": "You're in the club! 🎉<br><br>Great news, we received your request to activate a <b>3 Month Unlimited Exterior Membership GIFT:</b><br><br><ul><li>This gifted membership will expire on <span style=\"background-color: blue; color: black; padding: 2px 4px; border-radius: 3px;\">MM/DD/YY (Day before expiration) at close of business</span></li></ul><br><br>Your vehicle registration has been completed for the <a href=\"https://www.risingtidecarwash.com/unlimited-club\">Tide Guard Club — our top wash (Signature Ceramic Members are grandfathered in)</a>.<br><br>Please visit our website for additional information about how this membership works, Frequently Asked Questions including our Limited Liability Policy, & to review our <a href=\"https://docs.google.com/document/d/1wBwGFsIoHVW0QtJehLGdDyqltQZ1_Fod7SSzV05EWSc/edit?usp=sharing\">Terms & Conditions</a>.<br><br>Our memberships operate using License Plate Recognition. Each Time that you visit a Rising Tide location moving forward you will receive the following:<ul><li>Unlimited Tide Guard <b>exterior washes</b> across all 3 stores (addresses on my signature). This membership will be redeemable for one vehicle.</li><li>during the wash, the following will be applied by our machinery:</li><ul>Graphene Application</li><li>Ceramic Supershine</li><li>Shine Bath & Boost</li><li>Tire cleaning + Tire Shine</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Bug Repellant</li><li><b>Drying by our blowers<b/></li><li>Use of our complimentary self-service vacuum stations</li></ul></ul><br><br><b><ul><li>Members also currently have the option to purchase an Express Interior Cleaning upgrade at our Parkland and Margate stores ($13 + tax per visit).</b>This includes our team:<ul><li>Drying down your car</li><li>Using an air tool to blow crevices clean</li><li>Interior and exterior windows cleaned</li><li>Vacuum</li><li>Detachable mats cleaned</li><li>Wipe down of hard surfaces</li><li>Tire shine and rims touched up by hand</li><li>Exterior bug check touched up by hand</li><li>Air freshener, by request</li></ul></ul><br><br><ul><li>The following express upgrades can be added on as well (13.08 + tax per visit). This includes our team:</li><ul><li>Disinfectant Service</li><li>Express Wax</li><li>Mat Shampoo (detachable mats only)</li></ul></ul><br><br><span style=\\\"color:blue;\\\">When your gifted period ends you will have the option to renew this membership at our current club rate ($42.95 + tax/month) as outlined in our Terms & Conditions. Please follow the prompts that display on the pay station screen:</span><br><br><img src=\"cid:memberscreenrenew\" alt=\"Renew Screen\" style=\"max-width: 100%; height: auto;\"><br><br>By selecting 'Renew my membership'<br><ul><li>You will be prompted to purchase the next month at the current club rate that displays on the screen.</li><li>The card that you swipe will be stored as your default payment method</li><li>Renewed memberships automatically renew on a monthly basis until a cancellation form is submitted. You can cancel at any time by submitting a Manage Membership form on our website. Cancellations received prior to the renewal (billing) date will not be charged again</li><ul><br><span style=\\\"color:blue;\\\">An attendant is normally nearby & can help!</span><br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨",
+      "image": "memberscreenrenew.png"
+},
+   "Incomplete_payment_method": {
+        "trigger_phrases": [
+            "cannot pay",
+            "incomplete payment"
+],
+    "subject":"Incomplete Payment Method Ticket",
+    "reply": "Good afternoon,<br><br>I am writing in regards to an incomplete payment method ticket that was queued. I wanted to send a pre-filled form for this update and for it to process successfully.<br><br><span style=\\\"background-color: yellow;\\\">INSERT URL LINK</span><br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+},
+   "firstMonth_promo_refundRequest": {
+        "trigger_phrases": [
+            "did not know it would recharge",
+            "did not know it would bill",
+            "did not sign up for membership",
+            "didn't sign up for membership",
+            "refund for membership"
+],
+    "subject":"1st Month Promotion Refund Request",
+    "reply": "Good afternoon,<br><br>I'll do my best to help & I believe that part of the confusion may have been that we are currently running a speical at our locations where customers can sign up for a membership at the same cost of 1 wash (1st month for the price of 1 wash). This <b>promotional pricing applies to the 1st month only</b>(after that, customers who opt to keep their membership active would be charged the regular renewal rate of <span style=\\\"background-color:yellow;\\\">$XXXX</span>a month):<br><ul><li><i>A description of this club offering & alterntive options appears on the sales presentation tabelt our attendant holds:</i></li><li><img src=\"cid:glaze\" alt=\"Tide Glaze EXT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:glossEXT\" alt=\"Tide Gloss EXT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:TideGuardEXT\" alt=\"Tide Guard EXT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:TideGlossINT\" alt=\"Tide Gloss INT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:TideGuardINT\" alt=\"Tide Guard INT\" style=\"max-width: 100%; height: auto;\"></li><li><i>A full description & decline appears on the self-service touch screen again at our pay stations:<i></li><li><img src=\"cid:promo1stmonthglaze\" alt=\"PROMO 1ST MONTH SCREEN\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:promo1stmonthgloss\" alt=\"PROMO Screen\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:promo1stmonthguard\" alt=\"PROMO screen\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:PROMO_INT_GLOSS\" alt=\"PROMO INT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:PROMO_INT_GUARD\" alt=\"PROMO INT\" style=\"max-width: 100%; height: auto;\"></li></ul><br><br><i>The pay station screens display the current (promotional) pricing, terms & conditions which can also be accessed through our website, & if selected will prompt the dirver for a phone number. This is a paperless enrollment process - the phone number allows the automated system to send a welcome tect for further transparency about how this club and cancellation works.</i><br><br>You enrolled on our Ripple Club on <span style=\\\"background-color:yellow;\\\">MM/DD/YY</span> during the <i>'1st month for the same price of 1 wash'</i> promotion.<ul><li>Please see attatched for the audio of your transaction during which time the attendant explains the renewal cost</li><li>As well as the welcome text(s) sent to the phone number on file <span style=\\\"background-color:yellow;\\\">XXX-XXX-XXXX</span>, on <span style=\\\"background-color:yellow;\\\">MM/DD/YY</span> that also outlined the renewal cost & cancellation policy</li></ul><br><br>While I am unable to issue you a refund for the renewal that was charged on <span style=\\\"background-color:yellow\\\">MM/DD</span> our system will allow me to issue a courtesy <span style=\\\"background-color:yellow\\\">X</span>month extension. Your account is currently paid through close of business on <span style=\\\"background-color:yellow\\\">MM/DD/YY</span>. If you would like to accept this extension please let me know & I will extend your membership expiration date to grant you the additional time & send you back a confirmation<br><br>I hope that you'll consider accepting this extension & come back to utilize your membership perks across all Rising Tide Car Wash locations. Looking forward to reconnecting.😁<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨",
+       "images":[
+           "tideglossext.png",
+           "tideglazeext.png",
+           "tideguardext.png", 
+           "tideguardint.png", 
+           "tideglossint.png",
+           "promo_tideglaze.png", 
+           "promo_tidegloss.png",
+           "promo_tideguard.png",
+           "promo_int_gloss.png",
+           "promo_int_guard.png"
+       ]
+}
+}
+
+
+
+
+

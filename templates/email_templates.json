@@ -1,0 +1,231 @@
+{
+  "License_Plate_Issues": {
+    "trigger_phrases": [
+      "license plate",
+      "membership not working",
+      "car not recognized",
+      "not reading",
+      "plate issue",
+      "not scanning",
+      "can't see plate"
+    ],
+    "intents": {
+      "reader_issue": {
+        "trigger_phrases": [
+          "not reading",
+          "does not read",
+          "cannot read",
+          "scanner not working",
+          "car not recognized",
+          "plate not working"
+        ],
+        "subject": "License Plate Reader Issues",
+        "reply": "I'm so very sorry to hear about the difficulty that you have been experiencing. I'll do my best to assist. Rest assured that we value our supporters & strive to provide a great customer experience which I can see we have fallen short of. We appreciate you taking the time to provide us with feedback so that we can continue to improve.<br><br>To provide some context, our vendor's License Plate Reader system is intended to automatically scan the license plate number at entry as it approaches the pay station. It then will search through our database to find a registered match & if that vehicle is affiliated with an active membership profile, it then provides the vehicle with their club's wash, if your're at our Parkland or Margate locations it will also have the option of adding on any of our interior membership upgrades from the menu at this time.<br><br>License plate recognition usually works best with standard issue state plates since non-standard characters, spacing, or alternative graphic backgrounds/borders may at times interfere with the accuracy of these reads. Typically, attendants are able to quickly assist customers with custom plates by being near the pay station & swiping our Management Card to look up the plate manually when needed.<br><ul><li>I will be sharing your feedback with each site's management team so that we can use this as a valuable coaching opportunity regarding clear communication & having attendants nearby.</li><li>I would also like to take a look into your account to confirm that everything is registered correctly on our end. When you have a moment, <b>please reply back with the:</b><ul><li>Phone number affiliated with this membership</li><li>License plate number that should be on file</li></ul></ul><br><br>That will allow me to look into this further & submit a support ticket to our vendor so that we can try to exhaust all troubleshooting options. For all other questions or concerns please do not hesitate to reach out to me via this designated inbox<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "plate_update": {
+        "trigger_phrases": [
+          "update license plate",
+          "change plate number",
+          "new plate",
+            "change license",
+            "change license plate"
+        ],
+        "subject": "License Plate # Updated",
+        "reply": "Thank you for reaching out to our team & requesting an account update. I would be happy to help!<br><br> Your license plate number has been updated as requested:<br><br><span style=\\\"background-color: yellow;\\\">SS of LP</span><br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "cancel_missing_plate": {
+        "trigger_phrases": [
+          "don\u2019t have license plate",
+          "cancel but no plate",
+          "terminate membership no plate",
+            "don't have license plate"
+        ],
+        "subject": "License Plate Needed to Terminate",
+        "reply": "Thank you for reaching out to our team!<br><br>So sorry to see you go but I would be happy to assist you. Our memberships currently operate via License Plate Recognition. <b>To cancel your membership, please submit a Manage Membership Cancellation form on our website, located in the signature of this email. This is the fastest way to make sure that your account is cancelled as it will prompt you to input the affiliated phone number & license plate.<br><br><ul><li><i>You would then receive a confirmation response day-of & not lose any time that was previously purchased, i.e. if you paid on March 15th your membership would still be active through April 15th regardless of cancellation date.</i></li></ul><br><br>Alternatively, this inbox is monitored various times a week Monday-Friday. If you prefer to reply back to this email thread with your license plate number/phone number I would be happy to look up your account for you, as I was unable to locate a membership with the information that was provided during an initial search.<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      }
+    }
+  },
+  "Manage_Membership_Issues": {
+    "trigger_phrases": [
+      "cancel membership",
+      "cancel plan",
+      "change billing",
+      "change card",
+      "update card",
+      "refund",
+      "expiration issue",
+      "form not working",
+      "can't pay",
+        "pause membership",
+        "leaving town",
+        "stop billing",
+        "not in use",
+        "not using",
+        "cancel it",
+        "do not want membership",
+        "did not want membership",
+        "recharged",
+        "recharge",
+        "cancel account",
+        "cancel request",
+        "trying to cancel",
+        "need to cancel",
+        "cancel my membership",
+        "cancel the membership"
+    ],
+    "intents": {
+      "general_form": {
+        "trigger_phrases": [
+          "how can I cancel",
+          "cancel plan",
+          "change billing",
+          "change credit card",
+          "want to cancel",
+          "cancel membership",
+            "cancel form",
+            "cancel my plan",
+            "tried to cancel",
+            "cancelled online",
+            "need to cancel",
+            "how do I cancel",
+            "cancel it",
+            "did not want recharge",
+            "did not want membership"
+        ],
+        "subject": "Manage Membership Form",
+        "reply": "Happy to help!<br><br>Our Unlimited Wash Club is valid across all Rising Tide Car Wash locations. Addresses can be found on my signature line below. 💡 Feel free to click the link above to learn more about this plan online.<br><br><b>To change the card on file OR if you need to cancel our membership</b>, please submit a Manage Membership Form through our website & submit one form per car. This is an automated system & in most cases you can leave the 'Barcode from windshield if applicable' field blank.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "cancel_and_refund": {
+        "trigger_phrases": [
+          "plan cancelled",
+          "refund membership",
+          "refund previous month",
+            "cancel and refund",
+            "cancel membership",
+            "don't want to be charged again",
+            "charged after cancellation",
+            "charged after cancelling",
+            "need refund",
+            "refund for last month",
+            "did not want membership",
+            "did not want renewal",
+            "thought it was cancelled"
+        ],
+        "subject": "Cancelation & Refund Issued",
+        "reply": "Thank you for reaching out to our team. <br><br>We're so sorry to see you go but would be happy to help. Please allow this email to serve as confirmation that your membership, under license plate: ?????, has been <b>cancelled</b>effective immediately and will <b>remain valid until ????</b><br><br><b>A refund has been isssued</b>for the automatic renewal fee that our system had queued prior to this request being processed. Please allow a few business days for this refund to be reflected on your account as this varies by banking institution.<br><br>We thank you for your support and want to wish you all the best,<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "update_card": {
+        "trigger_phrases": [
+          "update credit card",
+          "new card",
+          "update billing",
+          "card not working",
+          "update card on file",
+            "change card",
+            "update card",
+            "new card for membership"
+        ],
+        "subject": "How to Change CC - SUSPENDED Membership",
+        "reply": "Thank you for reaching out to our team. We'd be happy to help!<br><br>Currently, due to merchant privacy regulations at this time there are only two ways to update the card on file: <br><br><b>Option 1:</b> The fastest way to reactivate a membership is by renewing on site, where the card is swiped in our point of sales system.<br><b>Option 2:</b> Update the card via our website. Once this is done, please send us a follow-up email stating this action is complete so we can set the account to 'Bill' status. Keep in mind that our email is a communal inbox; therefore, expect responses in about 48–72 hours.<br><br>We have set the membership for your account, under <span style=\\\"background-color:yellow;\\\">license plate: ####</span>, to 'suspend' so that our system will not attempt to automatically bill the card on file.<br><br>If doing option 1:<br>After <span style=\\\"background-color: yellow;\\\">??? EXPIRATION DATE ???</span> when you visit your preferred location, this is the screen you will likely see:<br><b>Select 'Renew my membership' & swipe your new card when prompted</b><br><img src=\"cid:renewimage\" alt=\"Renew Screen\" style=\"max-width: 100%; height: auto;\"><br><br>If you need any assistance during this visit, please feel free to ask for a Supervisor or Manager so that they can assist.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨<br><img src\"cid:Renew_membership_screen.png\">",
+        "image": "Renew_membership_screen.png"
+      },
+      "expiration_date_incorrect": {
+        "trigger_phrases": [
+          "not billing",
+          "expired membership",
+          "account expired",
+          "expired"
+        ],
+        "subject": "Incorrect Expiration Date",
+        "reply": "Thank you for being a valued supporter! I would be happy to assist. The initial email confirmation you received was an automated response triggered through our vendor after receiving your cancellation request. It appears that their system did not reflect the correct date.<br><br>Your membership on our end was paid through & remains valid through <span style=\\\"background-color yellow;\\\">XXXXX</span><br><br>My sincere apologies for this confusion. I have forwarded this to our vendor so that they can resolve the issue. We appreciate the notification & your understading!<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "no_cancellation_form_found": {
+        "trigger_phrases": [
+          "tried to cancel",
+          "cancellation form",
+          "cancel and refund"
+        ],
+        "subject": "No Cancellation Request Found - Refund Request",
+        "reply": "Thank you for reaching out to our team. We're sorry to hear about any inconvenience that this may have caused. <b>Please note that our process requires that all cancellation requests be submitted in writing either through this designated email address or via the Manage Membership form on our website</b> as indicated on the screen during the initial enrollment & posted on our website.<br><br>I've reviewed this inbox & our Manage Membership dashboard but have no record of a written cancellation request prior to this email thread. However, I completely understand your frustration & will be sure to use this as a valuable training opportunity for our team on the importance of clearly redirecting customers back to our website for all cancellations.<br><br><span style=\\\"background-color: yellow;\\\">I have issued a refund for your XXX payment as a courtesy exception & this profile has been terminated effective immediately. Depending on your banking institution these changes may take a few days to be reflected back on the account.</span><br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "unable_to_find_account": {
+        "trigger_phrases": [
+          "tried to cancel",
+          "submitted cancellation form"
+        ],
+        "subject": "Unable to Locate: Car Wash Membership Cancellation",
+        "reply": "Thank you for reaching out to our team.<br><br><span style=\\\"color blue;\\\">We received a request to cancel an account that does not appear to be in our system:</span><br><br><span style=\\\"background-color:yellow;\\\">COPY/PASTE RINSED INCOMPLETE TICKET for account not found in WashConnect</span><br><br><i>In case you did not intend to reach out to Rising Tide Car Wash no further action is necessary.</i><br><br>If you do have an account that needs to be cancelled, please reply back to this email thread with any other criteria that the membership(s) could have been registered under (different card holder name, different last 4 digits of card + date of last renewal, or most importantly a <b>different license plate number</b> that this membership may be found under)<br><br>We will do our best to assist you!<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "incomplete_payment": {
+        "trigger_phrases": [
+          "incomplete payment"
+        ],
+        "subject": "Incomplete Payment Method Ticket",
+        "reply": "Good afternoon,<br><br>I am writing in regards to an incomplete payment method ticket that was queued. I wanted to send a pre-filled form for this update and for it to process successfully.<br><br><span style=\\\"background-color: yellow;\\\">INSERT URL LINK</span><br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+        "pause_membership":{
+            "trigger_phrases":[
+                "pause membership",
+                "going out of town",
+                "leaving town",
+                "going on vacation",
+                "stop billing",
+                "skip a month",
+                "hold my account",
+                "not in use",
+                "won't be using my membership"
+    ],
+            "subject":"Membership Suspension",
+            "reply": "Thank you for reaching out!<br><br>We understand you'd like to deactivate your account until you are able to use it again. While we do not currently have a method of pausing a membership, you can simply cancel on our website by submitting a <b>Manage Membership</b> form and reactivate whenever you'd like by visiting the pay stations at any of our locations.<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+        }
+        
+    }
+  },
+  "Membership_Information": {
+    "trigger_phrases": [
+      "membership",
+      "pricing",
+      "how much",
+      "club options",
+      "interior upgrade",
+      "included in membership",
+      "club benefits"
+    ],
+    "intents": {
+      "pricing_and_plans": {
+        "trigger_phrases": [
+          "how much is a membership",
+          "membership prices",
+          "pricing for unlimited wash",
+          "membership options",
+          "different memberships",
+          "membership plans"
+        ],
+        "subject": "Membership Pricing & Benefits",
+        "reply": "Thanks for reaching out! We currently offer 3 levels of exterior memberships:<br><br><ul><li><b>Tide Guard Club for $42.95 + tax per vehicle each month</b><ul><li>Our top-tier wash featuring Graphene + Ceramic Supershine to help protect your vehicle from chips & scratches with added UV protection</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Tire shine & wheel cleaner</li></ul></li><li><b>Tide Gloss Club for $34.95 + tax per vehicle each month</b><ul><li>Still includes our Ceramic Supershine application, <span style=\\\"color: red;\\\">no Graphene</span></li><li>Shine Bath & Shine Boost</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Tire shine & wheel cleaner</li></ul></li><li><b>Tide Glaze for $29.90 + tax per vehicle each month</b><ul><li><span style=\"color: red;\">No Ceramic or Graphene application</span></li><li>Carnuba Wax for standard protection</li><li>Rain Repellant</li><li>Rainbow Polish</li><li>Tire shine & wheel cleaner</li></ul></li></ul><br>You can view full benefits and sign up here: <a href=\"https://www.risingtidecarwash.com/unlimited-club\">Membership Plans</a><br><br>When you first arrive at a location, the attendants near the pay station can help you select the best option.<br><br>Currently, we're running a new member promotion where customers who enroll their vehicle for a membership can claim the <b>'1st month for the price of only 1 wash'</b> promo. Plans still renew after the first month for the full standard price on a monthly basis.<br><br>To enroll, please visit any Rising Tide Car Wash location with your vehicle.<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+      },
+      "interior_for_members": {
+        "trigger_phrases": [
+          "member interior",
+          "interior services for members",
+          "discount on interior",
+          "member discount",
+          "interior cleaning"
+        ],
+        "subject": "FAQ: Interior Upgrade Includes",
+        "reply": "Thank you for reaching out regarding our <a href=\"https://www.risingtidecarwash.com/unlimited-club\">Ripple Club</a>, feel free to visit our website for additional information.<br><br>Exterior Members have the option to purchase an Express Interior Cleaning upgrade at our Parkland or Margate stores for $13 + tax. This includes our team:<ul><li>Drying down your car</li><li>Using an air tool to blow the crevices clean</li><li>Vacuum</li><li>Any removable mats are cleaned</li><li>Wipe down of hard surfaces</li><li>Interior and exterior windows cleaned</li><li>Tire shine re-applied and rims touched up by hand</li><li>Exterior bug check, touched up by hand</li><li>Air freshener, by request</li></ul><br><br><span style=\\\"color blue;\\\">Alternatively, our self service vacuums are free across all 3 locations. Please note, Coral Springs is an exterior-only site</span>👍<br><br>Hope this helps!<br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨<br><img src=\"cid:upgradescreen.png\">",
+        "image": "upgradescreen.png"
+      },
+      "what_is_included": {
+        "trigger_phrases": [
+          "included in membership",
+          "club add ons",
+          "what is included"
+        ],
+        "subject": "MEMBER $13 Interior - What's Included",
+        "reply": "Good afternoon,<br><br>Happy to help! Our <b> XX Unlimited Club memberships are $XX + tax per month</b>for each vehicle, <b>$XX after taxes</b>. Memberships renew on a monthly basis automatically to the card on file until a cancellation form is submitted. To sign up for our membership, please visit a Rising Tide location in your desired car so that the license plate number can be registered.<br><br>The cost for the <b>Express Interior cleaning is $13.90 for active members</b>, <span style=\\\"background-color yellow;\\\">see attached for 'What's included'</span>👍 Members will see the following upgrade screen when they visit our Parkland or Margate location in their registered vehicle & can make multiple selections or select <b>No Upgrade</b> for redeeming the exterior wash.<img src=\"cid:upgradescreen\" alt=\"Renew Screen\" style=\"max-width: 100%; height: auto;\"><br><br>If you need any additional assistance, please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨<br><img src=\"cid:upgradescreen.png\">",
+        "image": "upgradescreen.png"
+      }
+    }
+  }
+}
