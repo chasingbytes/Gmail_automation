@@ -235,46 +235,38 @@ if "unread_emails" in st.session_state:
                 for i, tmpl in enumerate(templates_list):
                     with st.expander(f"Option {i+1}: {tmpl['subject']}"):
                         st.markdown(tmpl["reply"], unsafe_allow_html=True)
+
                         if st.button(f"✅ Use this Reply", key=f"{email['id']}_choose_{i}"):
-                            st.session_state[f"selected_template_{email['id']}"] = i
+                            selected_template = tmpl
+                            reply_text = generate_gpt_reply(email['body'], selected_template)
 
-                if f"selected_template_{email['id']}" in st.session_state:
-                    index = st.session_state[f"selected_template_{email['id']}"]
-                    selected_template = templates_list[index]
-                    reply_key = f"reply_{email['id']}_{index}"
+                            # Send the draft immediately
+                            if "images" in selected_template:
+                                draft = create_draft_with_images(
+                                    service,
+                                    email['from'],
+                                    selected_template['subject'],
+                                    reply_text,
+                                    selected_template['images']
+                                )
+                            elif "image" in selected_template:
+                                image_path = os.path.join("images", selected_template["image"])
+                                draft = create_draft_with_image(
+                                    service,
+                                    email['from'],
+                                    selected_template['subject'],
+                                    reply_text,
+                                    image_path
+                                )
+                            else:
+                                draft = create_gmail_draft(
+                                    service,
+                                    email['from'],
+                                    selected_template['subject'],
+                                    reply_text
+                                )
 
-                    if reply_key not in st.session_state:
-                        st.session_state[reply_key] = generate_gpt_reply(email['body'], selected_template)
-
-                    reply_text = st.session_state[reply_key]
-                    st.text_area("Reply Text", reply_text, height=200, key=reply_key)
-
-                    if st.button(f"📤 Create Draft for {email['subject']}", key=email['id'] + '_send'):
-                        if "images" in selected_template:
-                            draft = create_draft_with_images(
-                                service,
-                                email['from'],
-                                selected_template['subject'],
-                                reply_text,
-                                selected_template['images']
-                            )
-                        elif "image" in selected_template:
-                            image_path = os.path.join("images", selected_template["image"])
-                            draft = create_draft_with_image(
-                                service,
-                                email['from'],
-                                selected_template['subject'],
-                                reply_text,
-                                image_path
-                            )
-                        else:
-                            draft = create_gmail_draft(
-                                service,
-                                email['from'],
-                                selected_template['subject'],
-                                reply_text
-                            )
-
-                        st.success(f"Draft created for {email['from']} – Draft ID: {draft['id']}")
+                            st.success(f"✅ Draft created for {email['from']} – Draft ID: {draft['id']}")
+                            st.text_area("Reply Preview", reply_text, height=200)
             else:
                 st.warning("No matching template found for this email.")
