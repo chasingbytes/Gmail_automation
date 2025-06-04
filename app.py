@@ -145,7 +145,7 @@ def get_gmail_service():
 
 # Create Gmail draft
 def create_gmail_draft(service, to, subject, body):
-    message = MIMEText(body, "html")
+    message = MIMEText(body, "html", _charset="utf-8")
     message['to'] = to
     message['subject'] = subject
     encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
