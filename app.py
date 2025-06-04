@@ -119,25 +119,37 @@ def create_draft_with_images(service, to, subject, html_body, image_list):
     import base64
     import os
 
+    # Create root message
     message = MIMEMultipart('related')
     message['To'] = to
     message['Subject'] = subject
 
+    # Create alternative block (for HTML content)
     alt = MIMEMultipart('alternative')
     message.attach(alt)
 
+    # Attach HTML body
     alt.attach(MIMEText(html_body, 'html', _charset='utf-8'))
 
-    for img_name in image_list:
-        image_path = os.path.join("images", img_name)
-        if os.path.exists(image_path):
-            with open(image_path, 'rb') as img_file:
-                img = MIMEImage(img_file.read())
-                content_id = os.path.splitext(img_name)[0]
-                img.add_header('Content-ID', f"<{content_id}>")
-                img.add_header('Content-Disposition', 'inline', filename=img_name)
-                message.attach(img)
+    # Attach each image with proper CID
+    for image_filename in image_list:
+        image_path = os.path.join("images", image_filename)
+        if not os.path.exists(image_path):
+            continue
 
+        with open(image_path, 'rb') as img_file:
+            img_data = img_file.read()
+
+        mime_image = MIMEImage(img_data)
+        
+        # Derive content ID from the filename (e.g., "TideGlossExt.png" → cid:TideGlossExt)
+        content_id = os.path.splitext(image_filename)[0]
+
+        mime_image.add_header('Content-ID', f'<{content_id}>')
+        mime_image.add_header('Content-Disposition', 'inline', filename=image_filename)
+        message.attach(mime_image)
+
+    # Encode and create the draft
     raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
     create_message = {'message': {'raw': raw}}
     draft = service.users().drafts().create(userId='me', body=create_message).execute()
