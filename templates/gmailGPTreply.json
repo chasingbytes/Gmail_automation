@@ -14,16 +14,16 @@
             "subject":"1st Month Promotion Refund Request",
             "reply": "Good afternoon,<br><br>I'll do my best to help & I believe that part of the confusion may have been that we are currently running a speical at our locations where customers can sign up for a membership at the same cost of 1 wash (1st month for the price of 1 wash). This <b>promotional pricing applies to the 1st month only</b>(after that, customers who opt to keep their membership active would be charged the regular renewal rate of <span style=\\\"background-color:yellow;\\\">$XXXX</span>a month):<br><ul><li><i>A description of this club offering & alterntive options appears on the sales presentation tabelt our attendant holds:</i></li><li><img src=\"cid:glaze\" alt=\"Tide Glaze EXT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:glossEXT\" alt=\"Tide Gloss EXT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:TideGuardEXT\" alt=\"Tide Guard EXT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:TideGlossINT\" alt=\"Tide Gloss INT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:TideGuardINT\" alt=\"Tide Guard INT\" style=\"max-width: 100%; height: auto;\"></li><li><i>A full description & decline appears on the self-service touch screen again at our pay stations:<i></li><li><img src=\"cid:promo1stmonthglaze\" alt=\"PROMO 1ST MONTH SCREEN\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:promo1stmonthgloss\" alt=\"PROMO Screen\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:promo1stmonthguard\" alt=\"PROMO screen\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:PROMO_INT_GLOSS\" alt=\"PROMO INT\" style=\"max-width: 100%; height: auto;\"></li><li><img src=\"cid:PROMO_INT_GUARD\" alt=\"PROMO INT\" style=\"max-width: 100%; height: auto;\"></li></ul><br><br><i>The pay station screens display the current (promotional) pricing, terms & conditions which can also be accessed through our website, & if selected will prompt the dirver for a phone number. This is a paperless enrollment process - the phone number allows the automated system to send a welcome tect for further transparency about how this club and cancellation works.</i><br><br>You enrolled on our Ripple Club on <span style=\\\"background-color:yellow;\\\">MM/DD/YY</span> during the <i>'1st month for the same price of 1 wash'</i> promotion.<ul><li>Please see attatched for the audio of your transaction during which time the attendant explains the renewal cost</li><li>As well as the welcome text(s) sent to the phone number on file <span style=\\\"background-color:yellow;\\\">XXX-XXX-XXXX</span>, on <span style=\\\"background-color:yellow;\\\">MM/DD/YY</span> that also outlined the renewal cost & cancellation policy</li></ul><br><br>While I am unable to issue you a refund for the renewal that was charged on <span style=\\\"background-color:yellow\\\">MM/DD</span> our system will allow me to issue a courtesy <span style=\\\"background-color:yellow\\\">X</span>month extension. Your account is currently paid through close of business on <span style=\\\"background-color:yellow\\\">MM/DD/YY</span>. If you would like to accept this extension please let me know & I will extend your membership expiration date to grant you the additional time & send you back a confirmation<br><br>I hope that you'll consider accepting this extension & come back to utilize your membership perks across all Rising Tide Car Wash locations. Looking forward to reconnecting.😁<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨",
             "images":[
-                    "tideglossext.png",
-                    "tideglazeext.png",
-                    "tideguardext.png", 
-                    "tideguardint.png", 
-                    "tideglossint.png",
-                    "promo_tideglaze.png", 
-                    "promo_tidegloss.png",
-                    "promo_tideguard.png",
-                    "promo_int_gloss.png",
-                    "promo_int_guard.png"
+                    "TideGlossExt.png",
+                    "TideGlazeExt.png",
+                    "TideGuardExt.png", 
+                    "FSGuard.jpg", 
+                    "FSGloss.jpg",
+                    "TideGlazePROMO.png", 
+                    "TideGlossPROMO.png",
+                    "TideGuardPROMO.png",
+                    "FSGlossClub.jpg",
+                    "FSGuardClub.png"
                 ]
         },
         {
