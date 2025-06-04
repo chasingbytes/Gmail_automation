@@ -201,7 +201,8 @@ Respond below:
             }
         ]
     )
-    
+    return response.choices[0].message.content.strip()  # ✅ Make sure you return and strip it
+
 # Streamlit UI
 st.title("📧 Email Reply Assistant")
 
@@ -239,6 +240,7 @@ if "unread_emails" in st.session_state:
                         if st.button(f"✅ Use this Reply", key=f"{email['id']}_choose_{i}"):
                             selected_template = tmpl
                             reply_text = generate_gpt_reply(email['body'], selected_template)
+                            st.write("Generated Reply:", reply_text) # TEMP DEBUG
 
                             # Fill the editable text area with the generated reply
                             edited_reply = st.text_area(
