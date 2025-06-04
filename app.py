@@ -242,31 +242,16 @@ if "unread_emails" in st.session_state:
 
                             # Send the draft immediately
                             if "images" in selected_template:
-                                draft = create_draft_with_images(
-                                    service,
-                                    email['from'],
-                                    selected_template['subject'],
-                                    reply_text,
-                                    selected_template['images']
-                                )
+                                draft = create_draft_with_images(service, email['from'], selected_template['subject'], edited_reply, selected_template['images'])
                             elif "image" in selected_template:
                                 image_path = os.path.join("images", selected_template["image"])
-                                draft = create_draft_with_image(
-                                    service,
-                                    email['from'],
-                                    selected_template['subject'],
-                                    reply_text,
-                                    image_path
-                                )
+                                draft = create_draft_with_image(service, email['from'], selected_template['subject'], edited_reply, image_path)
                             else:
-                                draft = create_gmail_draft(
-                                    service,
-                                    email['from'],
-                                    selected_template['subject'],
-                                    reply_text
-                                )
+                                draft = create_gmail_draft(service, email['from'], selected_template['subject'], edited_reply)
+
 
                             st.success(f"✅ Draft created for {email['from']} – Draft ID: {draft['id']}")
-                            st.text_area("Reply Preview", reply_text, height=200)
+                            edited_reply = st.text_area("Reply Preview", value=reply_text, height=200, key=f"{email['id']}_text_area")
+
             else:
                 st.warning("No matching template found for this email.")
