@@ -202,24 +202,27 @@ if "unread_emails" in st.session_state:
                     st.warning("No templates found for this category.")
                     continue
 
-                selected_index = st.radio(
-                    "Choose a reply template:",
-                    range(len(templates_list)),
-                    format_func=lambda i: templates_list[i]['subject'],
-                    key=email['id'] + "_template_select"
-                )
+                # Display templates with expanders
+                for i, tmpl in enumerate(templates_list):
+                    with st.expander(f"Option {i+1}: {tmpl['subject']}"):
+                        st.markdown(tmpl["reply"], unsafe_allow_html=True)
+                        if st.button(f"✅ Use this Reply", key=f"{email['id']}_choose_{i}"):
+                            st.session_state[f"selected_template_{email['id']}"] = i
 
-                selected_template = templates_list[selected_index]
-                reply_key = f"reply_{email['id']}_{selected_index}"
+                # If user has selected a template
+                if f"selected_template_{email['id']}" in st.session_state:
+                    index = st.session_state[f"selected_template_{email['id']}"]
+                    selected_template = templates_list[index]
+                    reply_key = f"reply_{email['id']}_{index}"
 
-                if reply_key not in st.session_state:
-                    st.session_state[reply_key] = generate_gpt_reply(email['body'], selected_template)
+                    if reply_key not in st.session_state:
+                        st.session_state[reply_key] = generate_gpt_reply(email['body'], selected_template)
 
-                reply_text = st.session_state[reply_key]
-                st.text_area("Reply Text", reply_text, height=200, key=reply_key)
+                    reply_text = st.session_state[reply_key]
+                    st.text_area("Reply Text", reply_text, height=200, key=reply_key)
 
-                if st.button(f"📤 Create Draft for {email['subject']}", key=email['id'] + '_send'):
-                    draft = create_gmail_draft(service, email['from'], selected_template['subject'], reply_text)
-                    st.success(f"Draft created for {email['from']} – Draft ID: {draft['id']}")
+                    if st.button(f"📤 Create Draft for {email['subject']}", key=email['id'] + '_send'):
+                        draft = create_gmail_draft(service, email['from'], selected_template['subject'], reply_text)
+                        st.success(f"Draft created for {email['from']} – Draft ID: {draft['id']}")
             else:
                 st.warning("No matching template found for this email.")
