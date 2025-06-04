@@ -14,7 +14,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Load response templates from JSON
 @st.cache_data
 def load_templates():
-    with open("templates/email_templates.json", "r") as f:
+    with open("templates/gmailGPTreply.json", "r") as f:
         return json.load(f)
 
 import re
@@ -37,47 +37,25 @@ def normalize(text):
 
 from rapidfuzz import fuzz
 
-FUZZY_THRESHOLD = 85  # change as needed for accuracy
+FUZZY_THRESHOLD = 85  # adjust for tolerance
 
 def detect_intent(user_input, templates):
     normalized_input = normalize(user_input)
 
     for category, category_data in templates.items():
-        # First try category-level trigger phrases
-        if any(phrase in normalized_input for phrase in category_data.get("trigger_phrases", [])):
-            for intent_key, intent_data in category_data.get("intents", {}).items():
-                # First try exact match
-                if any(phrase in normalized_input for phrase in intent_data.get("trigger_phrases", [])):
-                    return {
-                        "category": category,
-                        "intent": intent_key,
-                        "subject": intent_data["subject"],
-                        "reply": intent_data["reply"],
-                        "image": intent_data.get("image", None)
-                    }
-                # Then try fuzzy matching
-                for phrase in intent_data.get("trigger_phrases", []):
-                    score = fuzz.partial_ratio(normalized_input, normalize(phrase))
-                    if score >= FUZZY_THRESHOLD:
-                        return {
-                            "category": category,
-                            "intent": intent_key,
-                            "subject": intent_data["subject"],
-                            "reply": intent_data["reply"],
-                            "image": intent_data.get("image", None)
-                        }
+        trigger_phrases = category_data.get("trigger_phrases", [])
+        for phrase in trigger_phrases:
+            exact_match = phrase in normalized_input
+            fuzzy_match = fuzz.partial_ratio(normalized_input, normalize(phrase)) >= FUZZY_THRESHOLD
 
-            # If no intent matched but category was triggered
-            return {
-                "category": category,
-                "intent": None,
-                "subject": f"{category} Inquiry",
-                "reply": "Thanks for reaching out to Rising Tide Car Wash! We’d love to assist you further. Could you clarify your question?",
-                "image": None
-            }
+            if exact_match or fuzzy_match:
+                return {
+                    "category": category,
+                    "templates": category_data.get("templates", [])
+                }
 
-    return None  # No match at all
-
+    return None
+    
 def preprocess_email(body):
     body = body.lower()
     body = body.replace("’", "'").replace("‘", "'")
@@ -120,7 +98,7 @@ from openai import OpenAI
 
 client = OpenAI()  # uses OPENAI_API_KEY from env
 
-def generate_gpt_reply(user_email, intent, template):
+def generate_gpt_reply(user_email, template):
     prompt = f"""
 You are a customer support assistant for Rising Tide Car Wash.
 
@@ -154,7 +132,7 @@ Respond below:
             }
         ]
     )
-    return response.choices[0].message.content
+
 
 # Authenticate and create Gmail service
 @st.cache_resource
@@ -219,7 +197,7 @@ if "unread_emails" in st.session_state:
             if intent:
                 template = intent
                 if f"reply_{email['id']}" not in st.session_state:
-                    st.session_state[f"reply_{email['id']}"] = generate_gpt_reply(email['body'], intent, template)
+                    st.session_state[f"reply_{email['id']}"] = generate_gpt_reply(email['body'], selected_template)
 
                 reply_text = st.session_state[f"reply_{email['id']}"]
                 st.text_area("Reply Text", reply_text, height=200, key=email['id'])
