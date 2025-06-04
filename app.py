@@ -10,6 +10,7 @@ from google.auth.transport.requests import Request
 import pickle
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
+signature = st.secrets["general"]["signature"]
 
 # Load response templates from JSON
 @st.cache_data
@@ -240,13 +241,15 @@ if "unread_emails" in st.session_state:
                         if st.button(f"✅ Use this Reply", key=f"{email['id']}_choose_{i}"):
                             selected_template = tmpl
                             reply_text = generate_gpt_reply(email['body'], selected_template)
+                            # add signature
+                            reply_text += signature
                             st.write("Generated Reply:", reply_text) # TEMP DEBUG
 
                             # Fill the editable text area with the generated reply
                             edited_reply = st.text_area(
                                 "Reply Preview",
                                 value=reply_text,
-                                height=200,
+                                height=300,
                                 key=f"{email['id']}_text_area"
                             )
 
