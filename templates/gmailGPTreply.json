@@ -45,7 +45,8 @@
         },
         {
             "subject": "Temporary Member Account Suspension",
-            "reply": "Thank you for reaching out!<br><br>We understand you'd like to deactivate your account until you are able to use it again. While we do not currently have a method of pausing a membership, you can simply cancel on our website by submitting a <b>Manage Membership</b> form and reactivate whenever you'd like by visiting the pay stations at any of our locations.<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨"
+            "reply":  "Thank you for reaching out to our team! I hope this message serves as confirmation that your account associated with license plate <b><i>[LP XX]</i></b> has been successfully placed in the <b>'Suspended'</b> status, effctive immediatley. The membership will remain valid until the close of business on <b>[XX Date]</b>.<br>When you're ready to reactivate your account, you can simply reply to this thread. Alternatively, you're welcome to visit your preferred location and renew your membership in person at the paystation which will show the following screen:<br><img src=\"cid:renewscreen.png\" alt=\"renewscreen.png\" style=\"max-width: 100%; height: auto;\"<br><br>If you need any additional assistance please do not hesitate to reach out to us via this designated email. Responses are requested within this same thread to minimize delays in processing. ✨",
+            "image": "renewscreen.png"
         },
         {
             "subject": "License Plate Not Found - Needed for Termination",
