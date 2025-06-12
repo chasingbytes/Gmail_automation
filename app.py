@@ -19,19 +19,20 @@ st.set_page_config(
     layout="wide"
 )
 
+# Hide Streamlit's general header
+hide_streamlit_style = """
+    <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+    </style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # Load secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 signature = st.secrets["general"]["signature"]
 
-# Hide Streamlit's general header
-hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Load response templates from JSON
 @st.cache_data
