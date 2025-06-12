@@ -13,6 +13,12 @@ from email.mime.image import MIMEImage
 import base64
 import re
 
+st.set_page_config(
+    page_title="RTCW Email Assistant",
+    page_icon="📫",
+    layout="wide"
+)
+
 # Load secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 signature = st.secrets["general"]["signature"]
@@ -264,11 +270,6 @@ Respond below:
     return response.choices[0].message.content.strip()
 
 # Streamlit UI
-st.set_page_config(
-    page_title="RTCW Email Assistant",
-    page_icon="📫",
-    layout="wide"
-)
 st.title("RTCW Email Assistant")
 
 service = get_gmail_service()
