@@ -2,13 +2,18 @@ import streamlit as st
 import json
 import os
 import openai
-from email.mime.text import MIMEText
-import base64
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import pickle
+from rapidfuzz import fuzz
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+import base64
+import re
 
+# Load secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 signature = st.secrets["general"]["signature"]
 
@@ -18,7 +23,6 @@ def load_templates():
     with open("templates/gmailGPTreply.json", "r") as f:
         return json.load(f)
 
-import re
 def normalize(text):
     text = text.lower()
     text = text.replace("’", "'").replace("‘", "'")
@@ -34,11 +38,9 @@ def normalize(text):
     text = re.sub(r"[^\w\s]", "", text)  # remove punctuation
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+    
 
-
-from rapidfuzz import fuzz
-
-FUZZY_THRESHOLD = 85  # adjust for tolerance
+FUZZY_THRESHOLD = 85 
 
 def detect_intent(user_input, templates):
     normalized_input = normalize(user_input)
@@ -73,62 +75,70 @@ def get_gmail_service():
 
 
 # Create Gmail draft (html only no images)
-def create_gmail_draft(service, to, subject, body):
+def create_gmail_draft(service, to, subject, body, thread_id=None, original_message_id=None):
     message = MIMEText(body, "html", _charset="utf-8")
     message['to'] = to
     message['subject'] = subject
-    encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
-    create_message = {'message': {'raw': encoded_message}}
-    draft = service.users().drafts().create(userId='me', body=create_message).execute()
+
+    if original_message_id:
+        message['In-Reply-To'] = original_message_id
+        message['References'] = original_message_id
+
+    raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+    msg_dict = {'raw': raw}
+
+    if thread_id:
+        msg_dict['threadId'] = thread_id
+
+    draft = service.users().drafts().create(userId='me', body={'message': msg_dict}).execute()
     return draft
+    
 # with 1 image
-def create_draft_with_image(to, subject, html_body, image_path):
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
-    from email.mime.image import MIMEImage
-    import base64
+def create_draft_with_image(to, subject, html_body, image_path, thread_id=None, original_message_id=None):
 
     message = MIMEMultipart('related')
     message['To'] = to
     message['Subject'] = subject
 
+    if original_message_id:
+        message['In-Reply-To'] = original_message_id
+        message['References'] = original_message_id
+
     alt = MIMEMultipart('alternative')
     message.attach(alt)
-
-    # Attach HTML content
     alt.attach(MIMEText(html_body, 'html'))
 
     # Attach image
     with open(image_path, 'rb') as img_file:
         img = MIMEImage(img_file.read())
-        image_filename = os.path.basename(image_path)
-        content_id = os.path.splitext(image_filename)[0]
-        img.add_header('Content-ID', '<renewimage>')
+        content_id = os.path.splitext(os.path.basename(image_path))[0]
+        img.add_header('Content-ID', f'<{content_id}>')
         img.add_header('Content-Disposition', 'inline', filename=image_filename)
         message.attach(img)
 
     # Return base64-encoded email content
     raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
-    return {'raw': raw}
+    msg_dict = {'raw': raw}
+    if thread_id:
+        msg_dict['threadId'] = thread_id
+
+    draft = service.users().drafts().create(userId='me', body={'message': msg_dict}).execute()
+    return draft
 
 # With multiple images
-def create_draft_with_images(service, to, subject, html_body, image_list):
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
-    from email.mime.image import MIMEImage
-    import base64
-    import os
+def create_draft_with_images(service, to, subject, html_body, image_list, thread_id=None, original_message_id=None):
 
     # Create root message
     message = MIMEMultipart('related')
     message['To'] = to
     message['Subject'] = subject
 
-    # Create alternative block (for HTML content)
+    if original_message_id:
+        message['In-Reply-To'] = original_message_id
+        message['References'] = original_message_id
+        
     alt = MIMEMultipart('alternative')
     message.attach(alt)
-
-    # Attach HTML body
     alt.attach(MIMEText(html_body, 'html', _charset='utf-8'))
 
     # Attach each image with proper CID
@@ -136,24 +146,21 @@ def create_draft_with_images(service, to, subject, html_body, image_list):
         image_path = os.path.join("images", image_filename)
         if not os.path.exists(image_path):
             continue
-
         with open(image_path, 'rb') as img_file:
-            img_data = img_file.read()
-
-        mime_image = MIMEImage(img_data)
-        
-        # Derive content ID from the filename (e.g., "TideGlossExt.png" → cid:TideGlossExt)
-        content_id = os.path.splitext(image_filename)[0]
-
-        mime_image.add_header('Content-ID', f'<{content_id}>')
-        mime_image.add_header('Content-Disposition', 'inline', filename=image_filename)
-        message.attach(mime_image)
-
-    # Encode and create the draft
+            mime_image = MIMEImage(img_file.read())
+            content_id = os.path.splitext(image_filename)[0]
+            mime_image.add_header('Content-ID', f'<{content_id}>')
+            mime_image.add_header('Content-Disposition', 'inline', filename=image_filename)
+            message.attach(mime_image)
+            
     raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
-    create_message = {'message': {'raw': raw}}
-    draft = service.users().drafts().create(userId='me', body=create_message).execute()
+    msg_dict = {'raw': raw}
+    if thread_id:
+        msg_dict['threadId'] = thread_id
+
+    draft = service.users().drafts().create(userId='me', body={'message': msg_dict}).execute()
     return draft
+                
 
 # Get unread emails
 def fetch_unread_emails(service, max_results=50):
@@ -161,24 +168,54 @@ def fetch_unread_emails(service, max_results=50):
     messages = results.get('messages', [])
     email_contents = []
     for msg in messages:
-        msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
+        msg_data = service.users().messages().get(userId='me', id=msg['id'], format='metadata', metadataHeaders=['From', 'Subject', 'Message-ID']).execute()
         headers = msg_data.get('payload', {}).get('headers', [])
         sender = next((h['value'] for h in headers if h['name'] == 'From'), 'Unknown')
         subject = next((h['value'] for h in headers if h['name'] == 'Subject'), 'No Subject')
+        message_id = next((h['value'] for h in headers if h['name'] == 'Message-ID'), None)
+        thread_id = msg_data.get('threadId')
         snippet = msg_data.get('snippet', '')
         email_contents.append({
             'id': msg['id'],
             'from': sender,
             'subject': subject,
-            'body': snippet
+            'body': snippet,
+            'thread_id': thread_id,
+            'message_id': message_id
         })
     return email_contents
+    
+def auto_reply_to_unread_emails(service):
+    unread_emails = fetch_unread_emails(service)
+
+    for email in unread_emails:
+        sender_email = email['from']
+        original_subject = email['subject']
+        original_body = email['body']
+        thread_id = email['thread_id']
+        message_id = email['message_id']
+
+        # Skip if essential metadata is missing
+        if not sender_email or not message_id or not thread_id:
+            continue
+
+        # Generate reply
+        html_response = generate_auto_reply(original_body)
+        
+        create_gmail_draft(
+            service=service,
+            to=sender_email,
+            subject="Re: " + original_subject,
+            body=html_response,
+            thread_id=thread_id,
+            original_message_id=message_id
+        )
 
 
 # Build GPT-based email reply
 from openai import OpenAI
 
-client = OpenAI()  # uses OPENAI_API_KEY from env
+client = OpenAI()
 
 def generate_gpt_reply(user_email, template):
     prompt = f"""
@@ -214,7 +251,7 @@ Respond below:
             }
         ]
     )
-    return response.choices[0].message.content.strip()  # ✅ Make sure you return and strip it
+    return response.choices[0].message.content.strip()
 
 # Streamlit UI
 st.title("📧 Email Reply Assistant")
@@ -257,7 +294,7 @@ if "unread_emails" in st.session_state:
                             reply_text += signature
                             st.write("Generated Reply:", reply_text) # TEMP DEBUG
 
-                            # Fill the editable text area with the generated reply
+                            # Fill editable text area with the generated reply
                             edited_reply = st.text_area(
                                 "Reply Preview",
                                 value=reply_text,
@@ -265,30 +302,36 @@ if "unread_emails" in st.session_state:
                                 key=f"{email['id']}_text_area"
                             )
 
-                            # Send the draft using edited (or unchanged) reply
+                            # Send draft using edited reply
                             if "images" in selected_template:
                                 draft = create_draft_with_images(
-                                    service,
-                                    email['from'],
-                                    selected_template['subject'],
-                                    edited_reply,
-                                    selected_template['images']
+                                    service=service,
+                                    to=email['from'],
+                                    subject=email['subject'],
+                                    htlm_body=edited_reply,
+                                    image_path=image_path,
+                                    thread_id=email['thread_id'],
+                                    original_message_id=email['original_message_id']
                                 )
                             elif "image" in selected_template:
                                 image_path = os.path.join("images", selected_template["image"])
                                 draft = create_draft_with_image(
-                                    service,
-                                    email['from'],
-                                    selected_template['subject'],
-                                    edited_reply,
-                                    image_path
+                                    service=service,
+                                    to=email['from'],
+                                    subject=email['subject'],
+                                    htlm_body=edited_reply,
+                                    image_path=image_path,
+                                    thread_id=email['thread_id'],
+                                    original_message_id=email['original_message_id']
                                 )
                             else:
                                 draft = create_gmail_draft(
-                                    service,
-                                    email['from'],
-                                    selected_template['subject'],
-                                    edited_reply
+                                    service=service,
+                                    to=email['from'],
+                                    subject=email['subject'],
+                                    body=edited_reply,
+                                    thread_id=email['thread_id'],
+                                    original_message_id=email['message_id']
                                 )
 
                             st.success(f"✅ Draft created for {email['from']} – Draft ID: {draft['id']}")
