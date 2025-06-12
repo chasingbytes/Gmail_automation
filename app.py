@@ -271,7 +271,12 @@ Respond below:
     return response.choices[0].message.content.strip()
 
 # Streamlit UI
-st.title("RTCW Email Assistant")
+st.markdown(
+    """
+    <h1 style='text-align: center;'>RTCW Email Assistant 📫</h1>
+    """,
+    unsafe_allow_html=True
+)
 
 service = get_gmail_service()
 templates = load_templates()
