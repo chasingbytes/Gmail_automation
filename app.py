@@ -292,7 +292,6 @@ if "unread_emails" in st.session_state:
                             reply_text = generate_gpt_reply(email['body'], selected_template)
                             # add signature
                             reply_text += signature
-                            st.write("Generated Reply:", reply_text) # TEMP DEBUG
 
                             # Fill editable text area with the generated reply
                             edited_reply = st.text_area(
