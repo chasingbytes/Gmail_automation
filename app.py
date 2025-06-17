@@ -19,7 +19,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Hide Streamlit's general header
+# Hide Streamlit general header
 hide_streamlit_style = """
     <style>
         #MainMenu {visibility: hidden;}
@@ -32,7 +32,6 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # Load secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 signature = st.secrets["general"]["signature"]
-
 
 # Load response templates from JSON
 @st.cache_data
@@ -56,7 +55,6 @@ def normalize(text):
     text = re.sub(r"\s+", " ", text)
     return text.strip()
     
-
 FUZZY_THRESHOLD = 85 
 
 def detect_intent(user_input, templates):
@@ -241,7 +239,7 @@ You are a customer support assistant for Rising Tide Car Wash.
 A customer has sent an email, and your job is to respond professionally.
 
 Rules:
-- Start with a short, polite intro acknowledging the issue.
+- Start with a short, polite intro greeting the customer.
 - Then insert the template reply **exactly as written**.
 - Do NOT include the subject line.
 - Do NOT change formatting or emoji.
