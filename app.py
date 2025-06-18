@@ -34,7 +34,7 @@ if not st.session_state.authenticated:
         if st.form_submit_button("Login"):
             if user == USERNAME and pw == PASSWORD:
                 st.session_state.authenticated = True
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Incorrect Login")
     st.stop()
