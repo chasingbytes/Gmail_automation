@@ -44,8 +44,8 @@ You can extend functionality by:
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
-git clone https://github.com/yourusername/rtcw-email-assistant.git
-cd rtcw-email-assistant
+git clone https://github.com/chasingbytes/Gmail_automation.git
+cd Gmail_automation
 
 ### 2. Install dependencies
 pip install -r requirements.txt
