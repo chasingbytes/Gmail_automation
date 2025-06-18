@@ -19,6 +19,26 @@ st.set_page_config(
     layout="wide"
 )
 
+# Login section
+USERNAME = st.secrets["auth"]["username"]
+PASSWORD = st.secrets["auth"]["password"]
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.title("🔒 Login")
+    with st.form("login_form"):
+        user = st.text_input("Username")
+        pw = st.text_input("Password", type="password")
+        if st.form_submit_button("Login"):
+            if user == USERNAME and pw == PASSWORD:
+                st.session_state.authenicated = True
+                st.experimental_rerun()
+            else:
+                st.error("Incorrect Login")
+    st.stop()
+
 # Hide Streamlit general header
 hide_streamlit_style = """
     <style>
